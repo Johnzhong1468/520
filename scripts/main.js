@@ -3,13 +3,18 @@
   window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
 
   const FRAME_RATE = 60
-  const PARTICLE_NUM = 2000
+  const PARTICLE_NUM = 3000
   const RADIUS = Math.PI * 2
-  const CANVASWIDTH = 500
+  const CANVASWIDTH = 700
   const CANVASHEIGHT = 150
   const CANVASID = 'canvas'
+  const TimeLag = 2.5
 
-  let texts = ['小 兔 子', '乖乖 -- lol', '']
+  let texts = ['小 兔 子', '乖乖', '把门儿', '开开', 'lol',
+              '我一直都很想说', 'I am lucky', 'to have met you', 'at the right time', 'and the right place',
+              '和你在一起的日子', '让我忘记了', '孤独的滋味', '虽然你有时', '让我心累', '但是看着你笑', '我又不再疲惫',
+              '我时时犯蠢', '惹你生气', '但你生气之后', '不离不弃', '疫情压迫', '让你着急', '有我陪着', '只想让你安心...',
+              '5 2 0', '节日快乐宝贝儿！']
 
   let canvas,
     ctx,
@@ -144,7 +149,7 @@
         particles[i] = new Particle(canvas)
       }
       draw()
-    }, 4000 * textIndex)
+    }, TimeLag * 1000 * textIndex)
   }
 
   function textRunAll() { 
@@ -160,14 +165,6 @@
     }
     ctx = canvas.getContext('2d')
     setDimensions()
-    // event()
-
-
-    // for (var i = 0; i < PARTICLE_NUM; i++) {
-    //   particles[i] = new Particle(canvas)
-    // }
-
-    // draw()
     textRunAll()
   }
 
