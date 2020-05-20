@@ -1,7 +1,7 @@
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
   window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-var starDensity = .216;
+var starDensity = .5;
 var speedCoeff = .05;
 var width;
 var height;
@@ -76,7 +76,7 @@ function Star() {
     if (this.fadingOut) {
       this.fadingOut = this.opacity < 0 ? false : true;
       this.opacity -= this.do / 2;
-      if (this.x > width || this.y < 0) {
+      if (this.x < 0 || this.y < 0) {
         this.fadingOut = false;
         this.reset();
       }
@@ -96,7 +96,7 @@ function Star() {
       //comet tail
       for (var i = 0; i < 30; i++) {
         universe.fillStyle = 'rgba(' + cometColor + ',' + (this.opacity - (this.opacity / 20) * i) + ')';
-        universe.rect(this.x - this.dx / 4 * i, this.y - this.dy / 4 * i - 2, 2, 2);
+        universe.rect(this.x + this.dx / 4 * i, this.y + this.dy / 4 * i - 2, 2, 2);
         universe.fill();
       }
     } else {
@@ -109,12 +109,12 @@ function Star() {
   };
 
   this.move = function() {
-    this.x += this.dx;
-    this.y += this.dy;
-    if (this.fadingOut === false) {
+    this.x -= this.dx;
+    this.y -= this.dy;
+    if (this.fadingOut == false) {
       this.reset();
     }
-    if (this.x > width - (width / 4) || this.y < 0) {
+    if (this.x < width / 4 || this.y < 0) {
       this.fadingOut = true;
     }
   };

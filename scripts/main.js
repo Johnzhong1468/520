@@ -9,7 +9,7 @@
   const CANVASHEIGHT = 150
   const CANVASID = 'canvas'
 
-  let texts = ['MY DEAR', 'LOOK UP AT THE', 'STARRY SKY', 'ARE YOU', 'LOOKING AT THE', 'SAME STAR', 'WITH ME ?', 'HAPPY', 'CHINESE', 'VALENTINE\'S', 'DAY', 'I MISS YOU']
+  let texts = ['小 兔 子', '乖乖 -- lol', '']
 
   let canvas,
     ctx,
@@ -137,6 +137,22 @@
     }, false)
   }
 
+  function textRun (textIndex) {
+    setTimeout(function() {
+      text = texts[textIndex]
+      for (var i = 0; i < PARTICLE_NUM; i++) {
+        particles[i] = new Particle(canvas)
+      }
+      draw()
+    }, 4000 * textIndex)
+  }
+
+  function textRunAll() { 
+    for (var i = 0; i < texts.length; i++) {
+      textRun(i)
+    }
+  }
+
   function init () {
     canvas = document.getElementById(CANVASID)
     if (canvas === null || !canvas.getContext) {
@@ -144,13 +160,15 @@
     }
     ctx = canvas.getContext('2d')
     setDimensions()
-    event()
+    // event()
 
-    for (var i = 0; i < PARTICLE_NUM; i++) {
-      particles[i] = new Particle(canvas)
-    }
 
-    draw()
+    // for (var i = 0; i < PARTICLE_NUM; i++) {
+    //   particles[i] = new Particle(canvas)
+    // }
+
+    // draw()
+    textRunAll()
   }
 
   class Particle {
