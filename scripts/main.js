@@ -190,7 +190,7 @@
       this.inText = false
       // 透明度相关
       this.opacity = 0
-      this.fadeInRate = 0.005
+      this.fadeInRate = 0.01
       this.fadeOutRate = 0.03
       this.opacityTresh = 0.98
       this.fadingOut = true
@@ -228,9 +228,6 @@
     if(!isChrome){
       $('#iframeAudio').remove()
   }
-  
-  // setTimeout(() => {
-    init()  
-  // }, 4000);
-  // mp3.play()
+
+  init()
 })(window)
